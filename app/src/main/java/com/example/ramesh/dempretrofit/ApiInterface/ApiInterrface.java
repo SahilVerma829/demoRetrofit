@@ -37,7 +37,7 @@ public interface ApiInterrface {
     @POST("completefiles.php")
     Call<UpdateResponse> update(
             @Field("update") String tag,
-            @Field("id") String id,
+           // @Field("id") String id,
             @Field("name") String name,
             @Field("last_name") String lastname,
             @Field("email") String email,

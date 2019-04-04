@@ -32,9 +32,9 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
 
 
     /** ButterKnife Code **/
-    @NotEmpty
-    @BindView(R.id.uid)
-    EditText uid;
+//    @NotEmpty
+//    @BindView(R.id.uid)
+//    EditText uid;
     @NotEmpty
     @BindView(R.id.name)
     EditText name;
@@ -73,6 +73,8 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
         validator.setValidationListener(this);
 
 
+
+
     }
 
     @OnClick(R.id.btn)
@@ -86,9 +88,9 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
     }
 
     private void update() {
-        apiInterface= ApiClient.getClient().create(ApiInterrface.class);
+        apiInterface= ApiClient.createService(ApiInterrface.class,"");
         Call<UpdateResponse> updateResponseCall=apiInterface.update("update",
-                uid.getText().toString(),
+               // uid.getText().toString(),
                 name.getText().toString(),
                 lName.getText().toString(),
                 email.getText().toString(),
@@ -102,7 +104,7 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
             public void onResponse(Call<UpdateResponse> call, Response<UpdateResponse> response) {
                 if (response.body().getStatus() == 1) {
                     Toast.makeText(UpdateActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UpdateActivity.this, Main2Activity.class);
+                    Intent intent = new Intent(UpdateActivity.this, ViewActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

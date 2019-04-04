@@ -72,7 +72,7 @@ public class Main2Activity extends AppCompatActivity implements Validator.Valida
     }
 
     private void login() {
-        apiInterrface= ApiClient.getClient().create(ApiInterrface.class);
+        apiInterrface= ApiClient.createService(ApiInterrface.class,"");
         Call<LoginResponse> loginResponseCall=apiInterrface.login("login",LEmail.getText().toString(),
                 LPassword.getText().toString());
 
@@ -81,7 +81,7 @@ public class Main2Activity extends AppCompatActivity implements Validator.Valida
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.body().getSuccess()==200){
                     Toast.makeText(Main2Activity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent= new Intent(Main2Activity.this,UpdateActivity.class);
+                    Intent intent= new Intent(Main2Activity.this,ViewActivity.class);
                     startActivity(intent);
                     finish();
                 }else{

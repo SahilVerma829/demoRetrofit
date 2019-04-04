@@ -27,6 +27,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+import static com.example.ramesh.dempretrofit.ApiManager.ApiClient.createService;
+
 
 public class MainActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     }
 
     private void register() {
-        apiInterface = ApiClient.getClient().create(ApiInterrface.class);
+        apiInterface = ApiClient.createService(ApiInterrface.class,"");
         Call<Responser> registerResponseCall = apiInterface.registration("register", name.getText().toString(),
                 lName.getText().toString(),
                 email.getText().toString(),
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
             public void onResponse(Call<Responser> call, retrofit2.Response<Responser> response) {
                 if (response.body().getStatus() == 1) {
                     Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    Intent intent = new Intent(MainActivity.this, ViewActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
