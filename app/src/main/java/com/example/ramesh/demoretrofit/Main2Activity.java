@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit;
+package com.example.ramesh.demoretrofit;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ramesh.dempretrofit.ApiInterface.ApiInterrface;
-import com.example.ramesh.dempretrofit.ApiManager.ApiClient;
-import com.example.ramesh.dempretrofit.ApiResponse.LoginResponse;
+import com.example.ramesh.demoretrofit.ApiInterface.ApiInterrface;
+import com.example.ramesh.demoretrofit.ApiManager.ApiClient;
+import com.example.ramesh.demoretrofit.ApiResponse.LoginResponse;
+import com.example.ramesh.demoretrofit.utilities.SessionManager;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -42,6 +43,7 @@ public class Main2Activity extends AppCompatActivity implements Validator.Valida
     /** ButterKnife Code **/
     Validator validator;
     ApiInterrface apiInterrface;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class Main2Activity extends AppCompatActivity implements Validator.Valida
         ButterKnife.bind(this);
         validator=new Validator(this);
         validator.setValidationListener(this);
+        sessionManager=new SessionManager(getApplicationContext());
 
     }
     @OnClick(R.id.LoginBtn)
@@ -80,7 +83,9 @@ public class Main2Activity extends AppCompatActivity implements Validator.Valida
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.body().getSuccess()==200){
+                    sessionManager.addString("sid",response.body().getId());
                     Toast.makeText(Main2Activity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
                     Intent intent= new Intent(Main2Activity.this,ViewActivity.class);
                     startActivity(intent);
                     finish();

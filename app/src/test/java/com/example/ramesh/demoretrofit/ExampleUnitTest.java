@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit;
+package com.example.ramesh.demoretrofit;
 
 import org.junit.Test;
 

@@ -1,9 +1,9 @@
-package com.example.ramesh.dempretrofit.ApiInterface;
+package com.example.ramesh.demoretrofit.ApiInterface;
 
-import com.example.ramesh.dempretrofit.ApiResponse.LoginResponse;
-import com.example.ramesh.dempretrofit.ApiResponse.Responser;
-import com.example.ramesh.dempretrofit.ApiResponse.UpdateResponse;
-import com.example.ramesh.dempretrofit.ApiResponse.ViewResponse;
+import com.example.ramesh.demoretrofit.ApiResponse.LoginResponse;
+import com.example.ramesh.demoretrofit.ApiResponse.Responser;
+import com.example.ramesh.demoretrofit.ApiResponse.UpdateResponse;
+import com.example.ramesh.demoretrofit.ApiResponse.ViewResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -37,7 +37,7 @@ public interface ApiInterrface {
     @POST("completefiles.php")
     Call<UpdateResponse> update(
             @Field("update") String tag,
-           // @Field("id") String id,
+            @Field("id") String id,
             @Field("name") String name,
             @Field("last_name") String lastname,
             @Field("email") String email,

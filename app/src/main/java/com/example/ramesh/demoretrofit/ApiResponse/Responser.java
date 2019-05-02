@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit.ApiResponse;
+package com.example.ramesh.demoretrofit.ApiResponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

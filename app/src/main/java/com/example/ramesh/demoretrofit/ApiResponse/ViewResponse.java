@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit.ApiResponse;
+package com.example.ramesh.demoretrofit.ApiResponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,8 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ViewResponse {
-
-
     @SerializedName("list1")
     @Expose
     private List<List1> list1 = null;
@@ -42,6 +40,7 @@ public class ViewResponse {
         this.status = status;
     }
 
+
     public class List1 {
 
         @SerializedName("id")
@@ -68,6 +67,9 @@ public class ViewResponse {
         @SerializedName("contect")
         @Expose
         private String contect;
+        @SerializedName("photo")
+        @Expose
+        private String photo;
 
         public String getId() {
             return id;
@@ -133,8 +135,18 @@ public class ViewResponse {
             this.contect = contect;
         }
 
+        public String getPhoto() {
+            return photo;
+        }
+
+        public void setPhoto(String photo) {
+            this.photo = photo;
+        }
+
     }
 
 }
+
+
 
 

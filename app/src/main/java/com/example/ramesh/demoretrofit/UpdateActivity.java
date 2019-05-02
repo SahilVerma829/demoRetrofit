@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit;
+package com.example.ramesh.demoretrofit;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ramesh.dempretrofit.ApiInterface.ApiInterrface;
-import com.example.ramesh.dempretrofit.ApiManager.ApiClient;
-import com.example.ramesh.dempretrofit.ApiResponse.UpdateResponse;
+import com.example.ramesh.demoretrofit.ApiInterface.ApiInterrface;
+import com.example.ramesh.demoretrofit.ApiManager.ApiClient;
+import com.example.ramesh.demoretrofit.ApiResponse.UpdateResponse;
+import com.example.ramesh.demoretrofit.utilities.SessionManager;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -62,6 +63,7 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
 
     Validator validator;
     ApiInterrface apiInterface;
+    SessionManager sessionManager;
 
 
     @Override
@@ -71,7 +73,11 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
         ButterKnife.bind(this);
         validator=new Validator(this);
         validator.setValidationListener(this);
+        sessionManager=new SessionManager(getApplicationContext());
 
+        String id=sessionManager.getString("sid");
+
+        name.setText(sessionManager.getString("sid"));
 
 
 
@@ -89,7 +95,7 @@ public class UpdateActivity extends AppCompatActivity implements Validator.Valid
 
     private void update() {
         apiInterface= ApiClient.createService(ApiInterrface.class,"");
-        Call<UpdateResponse> updateResponseCall=apiInterface.update("update",
+        Call<UpdateResponse> updateResponseCall=apiInterface.update("update","16",
                // uid.getText().toString(),
                 name.getText().toString(),
                 lName.getText().toString(),

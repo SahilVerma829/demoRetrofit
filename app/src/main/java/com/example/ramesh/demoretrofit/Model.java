@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit;
+package com.example.ramesh.demoretrofit;
 
 public class Model {
     public String id;

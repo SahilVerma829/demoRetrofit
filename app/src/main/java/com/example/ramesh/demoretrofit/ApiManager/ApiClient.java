@@ -1,4 +1,4 @@
-package com.example.ramesh.dempretrofit.ApiManager;
+package com.example.ramesh.demoretrofit.ApiManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
